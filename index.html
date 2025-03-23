@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhuvith Constructions</title>
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+
+  <header id="site-header">
+    <div class="nav-left">
+      <img src="images/logo.jpeg" alt="Company Logo" class="logo" />
+      <h3 class="title">Bhuvith Constructions</h3>
+    </div>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#enquire">Enquire Now</a></li>
+    </ul>
+
+    <!-- Mobile Menu Icon -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- Mobile Dropdown Links -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#projects">Projects</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <li><a href="#enquire">Enquire Now</a></li>
+    </div>
+  </header>
+
+  <header class="hero-carousel">
+    <div class="hero-slide active" style="background-image: url('images/image1.jpg');">
+      <div class="hero-content">
+        <h1>Luxury Homes</h1>
+        <p>Find your dream space with us.</p>
+      </div>
+    </div>
+
+    <div class="hero-slide" style="background-image: url('images/image2.png');">
+      <div class="hero-content">
+        <h1>Modern Design</h1>
+        <p>Experience premium living at its finest.</p>
+      </div>
+    </div>
+
+    <!-- <div class="hero-slide" style="background-image: url('images/slide3.jpg');">
+      <div class="hero-content">
+        <h1>Exclusive Offers</h1>
+        <p>Book now and save up to 15%.</p>
+      </div>
+    </div> -->
+
+    <!-- Optional navigation dots -->
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+  <section class="projects" id="projects">
+    <h2>Our Projects</h2>
+    <div class="project-list">
+      <div class="project-card">
+        <img src="images/project1.jpg" alt="My Local Image" width="400" />
+        <h3>Skyline Heights</h3>
+        <p>Premium apartments with skyline views in Downtown.</p>
+      </div>
+      <div class="project-card">
+        <img src="images/project2.jpeg" alt="My Local Image" width="400" />
+        <h3>Green Valley</h3>
+        <p>Eco-luxury villas surrounded by nature in Suburbia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p class="about-description">
+      Meet the dedicated team behind Bhuvith Constructions, committed to delivering luxury living spaces.
+    </p>
+
+    <div class="profile-container">
+      <!-- Profile 1 -->
+      <div class="profile-card">
+        <img src="images/profile1.png" alt="Manju Naik" class="profile-img" />
+        <h3>Manju Naik</h3>
+        <p>Founder</p>
+      </div>
+
+      <!-- Profile 2 -->
+      <div class="profile-card">
+        <img src="images/profile2.png" alt="Santhosh Naik" class="profile-img" />
+        <h3>Santhosh Naik</h3>
+        <p>Co-Founder</p>
+      </div>
+
+      <!-- Profile 3 -->
+      <div class="profile-card">
+        <img src="images/profile3.png" alt="Raj Maruthan" class="profile-img" />
+        <h3>Raj Maruthan</h3>
+        <p>Chief Architect</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: sales@bhuvithconstructions.com | Phone: +91 90710 76387 | Phone: +91 91086 67605</p>
+  </section>
+
+  <section id="enquire" class="enquire-section">
+    <h2>Enquire Now</h2>
+    <p class="enquire-description">
+      Interested in our projects? Send us your details and we’ll get in touch with you soon.
+    </p>
+
+    <form id="enquireForm" class="enquire-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <input type="email" name="email" placeholder="Email Address" />
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Submit Enquiry</button>
+    </form>
+
+    <p id="responseMsg" style="margin-top: 10px;"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BhuvithConstructions. All rights reserved.</p>
+  </footer>
+  <script>
+    const header = document.getElementById('site-header');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+
+      // Animate background
+      if (currentScrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        header.classList.add('hidden');
+      } else {
+        header.classList.remove('hidden');
+      }
+
+      lastScrollY = currentScrollY;
+    });
+
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.dot');
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === i);
+        dots[idx].classList.toggle('active', idx === i);
+      });
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        index = idx;
+        showSlide(index);
+      });
+    });
+
+    setInterval(nextSlide, 5000);
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+  <script>
+    const form = document.getElementById('enquireForm');
+    const msg = document.getElementById('responseMsg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const jsonData = Object.fromEntries(formData.entries());
+      const now = new Date();
+      const formatted = new Intl.DateTimeFormat('en-US', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }).format(now);
+
+      fetch('https://sheetdb.io/api/v1/ny68wrgtwh7ic', {
+        method: 'POST',
+        body: JSON.stringify({ data: { ...jsonData, datetime: formatted } }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(() => {
+          msg.innerText = 'Thank you! Your enquiry has been submitted.';
+          form.reset();
+        })
+        .catch(() => {
+          msg.innerText = 'Oops! Something went wrong. Try again.';
+        });
+    });
+  </script>
+</body>
+
+</html>
